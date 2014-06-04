@@ -1,0 +1,25 @@
+{
+  "db": {
+    "defaultForType": "db",
+    "connector": "memory"
+  },
+  "push": {
+    "defaultForType": "push",
+    "connector": "loopback-push-notification",
+    "installation": "installation",
+    "notification": "notification",
+    "application": "application"
+  },
+  "mail": {
+    "defaultForType": "mail",
+    "connector": "mail"
+  },
+  "pagerDB": {
+    "connector": "postgresql",
+    "host": "0.0.0.0",
+    "port": "5432",
+    "database": "pager",
+    "username": "matt",
+    "password": "djangodb"
+  }
+}
