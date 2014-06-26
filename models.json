@@ -14,38 +14,42 @@
           "model": "accessToken",
           "type": "hasMany",
           "foreignKey": "userId"
+        },
+        "account": {
+        	"model": "account",
+        	"type": "belongsTo"
         }
       }
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": true
   },
   "accessToken": {
     "options": {
       "base": "AccessToken"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": true
   },
   "application": {
     "options": {
       "base": "Application"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": true
   },
   "acl": {
     "options": {
       "base": "ACL"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": false
   },
   "roleMapping": {
     "options": {
       "base": "RoleMapping"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": false
   },
   "role": {
@@ -59,14 +63,14 @@
         }
       }
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": false
   },
   "scope": {
     "options": {
       "base": "Scope"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": false
   },
   "push": {
@@ -80,17 +84,25 @@
     "options": {
       "base": "Installation"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": true
   },
   "notification": {
     "options": {
       "base": "Notification"
     },
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "public": true
   },
   "child": {
+    "options": {
+      "relations": {
+        "guardians": {
+          "model": "guardian",
+          "type": "hasAndBelongsToMany"
+        }
+      }
+    },
     "properties": {
       "name": {
         "type": "string"
@@ -100,10 +112,18 @@
       }
     },
     "public": true,
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "plural": "children"
   },
   "guardian": {
+    "options": {
+      "relations": {
+        "children": {
+          "model": "child",
+          "type": "hasAndBelongsToMany"
+        }
+      }
+    },
     "properties": {
       "name": {
         "type": "string"
@@ -116,10 +136,22 @@
       }
     },
     "public": true,
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "plural": "guardians"
   },
   "account": {
+    "options": {
+      "relations": {
+        "guardians": {
+          "model": "guardian",
+          "type": "hasMany"
+        },
+        "children": {
+          "model": "child",
+          "type": "hasMany"
+        }
+      }
+    },
     "properties": {
       "name": {
         "type": "string"
@@ -129,7 +161,7 @@
       }
     },
     "public": true,
-    "dataSource": "db",
+    "dataSource": "pagerDB",
     "plural": "accounts"
   }
 }

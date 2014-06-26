@@ -1,5 +1,7 @@
 var loopback = require('loopback');
 var path = require('path');
+var static = require('node-static');
+var hooks = require('./hooks');
 var app = module.exports = loopback();
 var started = new Date();
 
@@ -50,6 +52,17 @@ try {
     'Run `npm install loopback-explorer` to enable the LoopBack explorer'
   );
 }
+
+/* 
+ * Begin custom
+ */
+app.use(loopback.static('../../pager-client'));
+app.models.child.afterRemote('*', hooks.wrapName('child', 'children', ["guardians",]));
+app.models.guardian.afterRemote('*', hooks.wrapName('guardian', 'guardians', ["children",]));
+
+/* 
+ * End custom
+ */
 
 /*
  * EXTENSION POINT
