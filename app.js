@@ -57,8 +57,15 @@ try {
  * Begin custom
  */
 app.use(loopback.static('../../pager-client'));
-app.models.child.afterRemote('*', hooks.wrapName('child', 'children', ["guardians",]));
+//app.models.child.afterRemote('*', hooks.wrapName('child', 'children', [("guardians", app.models.guardian),]));
+//app.models.guardian.afterRemote('*', hooks.wrapName('guardian', 'guardians', [("children", app.models.child),]));
+//app.models.child.afterRemote('*', hooks.wrapName('child', 'children', ["guardians",]));
 app.models.guardian.afterRemote('*', hooks.wrapName('guardian', 'guardians', ["children",]));
+
+app.models.child.prototype.toJSONOrig = app.models.child.prototype.toJSON;
+app.models.child.prototype.toJSON = hooks.wrapToJSON(app.models.child, ["guardians",]); //function newToJSON() {
+  //return this.toJSONOrig();
+//};
 
 /* 
  * End custom
