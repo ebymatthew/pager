@@ -1,0 +1,14 @@
+{{#detail-display 
+    editRoute="child.edit" 
+    deleteAction="delete"
+    title=name
+    showLabel=false
+}}
+  <p>{{notes}}</p>
+  <h3>Guardians</h3>
+  {{#each guardian in guardians}}
+  <p>{{guardian.name}}</p>
+  {{/each}}
+{{/detail-display}}
+
+{{outlet}}

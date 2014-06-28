@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading clearFix">
+    <h3 class="panel-title pull-left">{{title}}: {{itemCount}}</h3>
+    {{#link-to createRoute class="btn btn-xs btn-primary pull-right"}} Add {{modelName}} {{/link-to}}
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      {{#each item in items}}
+        {{#link-to itemRoute item class="list-group-item"}} 
+          {{item.name}}
+        {{/link-to}}
+      {{else}}
+        {{#link-to createRoute class="btn btn-lg btn-primary"}} Add first {{modelName}} {{/link-to}}
+      {{/each}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+{{#detail-display 
+    editRoute="guardian.edit" 
+    deleteAction="delete"
+    title=name
+    showLabel=false
+}}
+  <span>{{phone}}</span>
+  <p>{{notes}}</p>
+  <h3>Children</h3>
+  {{#each child in children}}
+  <p>{{child.name}}</p>
+  {{/each}}
+{{/detail-display}}
+
+{{outlet}}

@@ -1,0 +1,9 @@
+{{#edit-form
+    title=formTitle
+    saveAction="save"
+    cancelAction="cancel"
+}}
+  {{form-field label="Name" value=name}}
+  {{form-field label="Email" value=email help="Email address is used for login and password recovery."}}
+  {{checkbox-field label="Is Admin" value=admin}}
+{{/edit-form}}

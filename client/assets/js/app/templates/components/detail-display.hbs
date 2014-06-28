@@ -1,0 +1,15 @@
+<div>
+  {{#link-to editRoute class="btn btn-lg btn-default"}} Edit {{/link-to}}
+  
+  {{confirm-button
+    action="delete"
+    text="Delete"
+    confirmMessage="Do you really want to delete?" 
+    isVisible=deleteMode
+  }}
+  
+  <h2>{{title}} {{#if showLabel}}<span class="label label-primary pull-right">{{label}}</span>{{/if}}</h2>
+  
+  {{yield}}
+
+</div>

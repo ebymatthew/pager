@@ -1,0 +1,7 @@
+<button  type="button" class="btn btn-lg btn-danger" {{action "delete"}}>{{text}}</button>
+
+{{confirm-box
+  action="confirmDelete"
+  message=confirmMessage 
+  isVisible=deleteMode
+}}

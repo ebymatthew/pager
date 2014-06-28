@@ -1,0 +1,45 @@
+<div class="main">
+  {{! Fixed navbar }}
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-phone"></span>&nbsp;Parent Text</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+              {{#link-to "users" tagName="li"}}
+                  <a {{bind-attr href="view.href"}}>Users</a>
+              {{/link-to}}
+            {{#link-to "guardians" tagName="li"}}
+                <a {{bind-attr href="view.href"}}>Guardians</a>
+            {{/link-to}}
+            {{#link-to "children" tagName="li"}}
+                <a {{bind-attr href="view.href"}}>Children</a>
+            {{/link-to}}
+            <li><a href="#contact">Send Message</a></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+              <p class="navbar-text">username<p>
+            </li>
+            <li>
+              <form>
+                 <a class="btn btn-danger btn-sm navbar-btn navbar-right">Logout</a>
+              </form>
+            </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+  
+  <div class="container theme-showcase" role="main">
+    {{outlet}}
+  </div>
+</div>

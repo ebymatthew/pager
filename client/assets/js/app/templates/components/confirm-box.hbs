@@ -1,0 +1,17 @@
+<div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button {{action "clickNo"}} type="button" class="close">&times;</button>
+        <h4 class="modal-title">Confirm</h4>
+      </div>
+      <div class="modal-body">
+        {{message}}
+      </div>
+      <div class="modal-footer">
+        <button {{action "clickYes"}} title="yes" class="btn btn-default"> yes </button>
+        <button {{action "clickNo"}} title="no" class="btn btn-danger"> no </button>
+      </div>
+    </div>
+  </div>
+</div>
