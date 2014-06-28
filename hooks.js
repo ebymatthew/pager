@@ -9,6 +9,7 @@ function buildLinks(prefix, links) {
 function wrapName2(model, nameSingular, namePlural, links) {
   return function(ctx, user, next) {
     if(ctx.result) {
+      var wrappedResult = {};
       if(Array.isArray(ctx.result)) {
         ctx.result.forEach(function (result) {
           
@@ -17,12 +18,12 @@ function wrapName2(model, nameSingular, namePlural, links) {
           
           result.links = buildLinks("/" + namePlural + "/" + result.id + "/", links);
         });
-        var wrappedResult = {};
+        wrappedResult = {};
         wrappedResult[namePlural] = ctx.result;
         ctx.result = wrappedResult;
       }
       else {
-        var wrappedResult = {};
+        wrappedResult = {};
         wrappedResult[nameSingular] = ctx.result;
         ctx.result = wrappedResult;
         
@@ -35,16 +36,17 @@ function wrapName2(model, nameSingular, namePlural, links) {
 function wrapName(nameSingular, namePlural, links) {
   return function(ctx, user, next) {
     if(ctx.result) {
+      var wrappedResult = {};
       if(Array.isArray(ctx.result)) {
         ctx.result.forEach(function (result) {
           result.links = buildLinks("/" + namePlural + "/" + result.id + "/", links);
         });
-        var wrappedResult = {};
+        wrappedResult = {};
         wrappedResult[namePlural] = ctx.result;
         ctx.result = wrappedResult;
       }
       else {
-        var wrappedResult = {};
+        wrappedResult = {};
         wrappedResult[nameSingular] = ctx.result;
         ctx.result = wrappedResult;
         
@@ -61,11 +63,9 @@ function wrapToJSON(model, links) {
     model.findById(result.id, function(err, child) {
       links.forEach( function(value) {
         var ids = [];
-      
-
         
         child.guardians(null, function(err, guardians) {
-          result[values] = guardians;
+          result[value] = guardians;
         });
       });
     });

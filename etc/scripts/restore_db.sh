@@ -6,4 +6,4 @@ fi
 
 DUMPFILE=${1}
 
-PGPASSWORD=matt pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d pager ${DUMPFILE} 
+PGPASSWORD=matt pg_restore --verbose --clean --no-acl --no-owner -h localhost -U ebymatthew -d pager ${DUMPFILE} 

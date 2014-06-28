@@ -1,6 +1,5 @@
 var loopback = require('loopback');
 var path = require('path');
-var static = require('node-static');
 var hooks = require('./hooks');
 var app = module.exports = loopback();
 var started = new Date();
@@ -56,14 +55,14 @@ try {
 /* 
  * Begin custom
  */
-app.use(loopback.static('../../pager-client'));
+app.use(loopback.static('./client'));
 //app.models.child.afterRemote('*', hooks.wrapName('child', 'children', [("guardians", app.models.guardian),]));
 //app.models.guardian.afterRemote('*', hooks.wrapName('guardian', 'guardians', [("children", app.models.child),]));
-//app.models.child.afterRemote('*', hooks.wrapName('child', 'children', ["guardians",]));
+app.models.child.afterRemote('*', hooks.wrapName('child', 'children', ["guardians",]));
 app.models.guardian.afterRemote('*', hooks.wrapName('guardian', 'guardians', ["children",]));
 
-app.models.child.prototype.toJSONOrig = app.models.child.prototype.toJSON;
-app.models.child.prototype.toJSON = hooks.wrapToJSON(app.models.child, ["guardians",]); //function newToJSON() {
+//app.models.child.prototype.toJSONOrig = app.models.child.prototype.toJSON;
+//app.models.child.prototype.toJSON = hooks.wrapToJSON(app.models.child, ["guardians",]); //function newToJSON() {
   //return this.toJSONOrig();
 //};
 
@@ -142,8 +141,9 @@ app.enableAuth();
  */
 
 app.start = function() {
-  return app.listen(function() {
-    var baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
+  return app.listen(process.env.PORT, function() {
+    //var baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
+    var baseUrl = 'http://' + process.env.IP + ':' + process.env.PORT;
     app.emit('started', baseUrl);
     console.log('LoopBack server listening @ %s%s', baseUrl, '/');
   });
