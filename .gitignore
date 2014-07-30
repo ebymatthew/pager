@@ -2,9 +2,6 @@ node_modules
 *.log
 *.dump
 .project
-app.js
-libs.js
-templates.js
 bower_components
 public
 .c9
