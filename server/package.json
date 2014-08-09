@@ -1,11 +1,13 @@
 {
+  "name": "pager-server",
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "restify": "^2.8.1"
+    "jsonwebtoken": "^0.4.1",
+    "restify": "^2.8.2",
+    "restify-oauth2": "git+https://github.com/domenic/restify-oauth2.git#public-clients"
   }
-  "name": "pager-server"
 }
