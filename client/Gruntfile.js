@@ -40,8 +40,8 @@ module.exports = function(grunt) {
           'bower_components/ember/ember.js',
           'bower_components/ember-data/ember-data.js',
           'bower_components/moment/moment.js',
-          //'bower_components/ember-simple-auth/ember-simple-auth.js',
-          //'bower_components/ember-simple-auth/ember-simple-auth-oauth2.js',
+          'bower_components/ember-simple-auth/ember-simple-auth.js',
+          'bower_components/ember-simple-auth/ember-simple-auth-oauth2.js',
           'bower_components/jwt-decode/build/jwt-decode.min.js'
         ],
         dest: 'public/assets/js/libs.js'

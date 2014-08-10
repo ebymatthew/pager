@@ -13,9 +13,12 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
+          {{#if session.isAuthenticated}}
+            {{#if session.profile.admin}}
               {{#link-to "users" tagName="li"}}
                   <a {{bind-attr href="view.href"}}>Users</a>
               {{/link-to}}
+            {{/if}}
             {{#link-to "guardians" tagName="li"}}
                 <a {{bind-attr href="view.href"}}>Guardians</a>
             {{/link-to}}
@@ -23,17 +26,26 @@
                 <a {{bind-attr href="view.href"}}>Children</a>
             {{/link-to}}
             <li><a href="#contact">Send Message</a></li>
+          {{/if}}
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
+          {{#if session.isAuthenticated}}
             <li>
-              <p class="navbar-text">username<p>
+              <p class="navbar-text">{{session.profile.username}}<p>
             </li>
             <li>
               <form>
-                 <a class="btn btn-danger btn-sm navbar-btn navbar-right">Logout</a>
+                 <a {{ action 'invalidateSession' }} class="btn btn-danger btn-sm navbar-btn navbar-right">Logout</a>
               </form>
             </li>
+          {{else}}
+            {{#link-to "login" tagName="li"}}
+              <form>
+                <a {{bind-attr href="view.href"}} class="btn btn-success btn-sm navbar-btn navbar-right">Login</a>
+              </form>
+            {{/link-to}}
+          {{/if}}
         </ul>
       </div><!--/.nav-collapse -->
     </div>
