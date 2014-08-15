@@ -2,6 +2,7 @@
 
 var jwt = require('jsonwebtoken');
 var config = require('./config');
+var FirebaseTokenGenerator = require("firebase-token-generator");
 
 var database2 = {
     clients: {
@@ -22,8 +23,10 @@ exports.grantUserToken = function (allCredentials, req, cb) {
 
   if(database2.users[username] && database2.users[username]['password'] == password)
   {
-    // We are sending the profile inside the token
-    var token = jwt.sign({username: username, admin: database2.users[username]['admin']}, config.JWT_SECRET, config.JWT_OPTIONS);
+    
+    // Generate a new secure JWT, we are sending the profile inside the token
+    var tokenGenerator = new FirebaseTokenGenerator(config.JWT_SECRET);
+    var token = tokenGenerator.createToken({username: username, admin: database2.users[username]['admin']});
 
     // Call back with the token so Restify-OAuth2 can pass it on to the client.
     return cb(null, token);
