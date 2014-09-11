@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-4">
+    {{list-display 
+        title="Accounts"  
+        items=controller
+        itemRoute="account"
+        modelName="account"
+        createRoute="accounts.create"}}
+  </div>
+  <div class="col-sm-8">
+    {{outlet}}
+  </div>
+</div>
