@@ -14,9 +14,9 @@ App.AccountsCreateController = Ember.ObjectController.extend({
     cancel: function(){
       var account = this.get('model');
       if (account.get("isDirty")){
-    	account.rollback();
+        account.rollback();
       }
-      this.transitionToRoute('accountns');
+      this.transitionToRoute('accounts');
     }
   }
 });

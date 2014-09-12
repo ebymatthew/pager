@@ -12,9 +12,9 @@ App.AccountEditController = Ember.ObjectController.extend({
     },
     cancel: function(){
       var account = this.get('model');
-	  if (account.get("isDirty")){
-		account.rollback();
-	  }
+      if (account.get("isDirty")){
+        account.rollback();
+	    }
       this.transitionToRoute('account', account);
     }
   }
