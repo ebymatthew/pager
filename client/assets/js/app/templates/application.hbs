@@ -15,8 +15,8 @@
         <ul class="nav navbar-nav">
           {{#if session.isAuthenticated}}
             {{#if session.profile.admin}}
-              {{#link-to "accounts" tagName="li"}}
-                  <a {{bind-attr href="view.href"}}>Accounts</a>
+              {{#link-to "account2" tagName="li"}}
+                  <a {{bind-attr href="view.href"}}>Account</a>
               {{/link-to}}
               {{#link-to "users" tagName="li"}}
                   <a {{bind-attr href="view.href"}}>Users</a>
