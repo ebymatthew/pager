@@ -10,8 +10,8 @@ var database2 = {
         pagerApiClient: { secret: "none" }
     },
     users: {
-        demoAdmin: { password: "demo", admin: true  },
-        demoUser: { password: "demo", admin: false  },
+        demoAdmin: { password: "demo", admin: true, account: "-JT89-_t8Bhn6BjO1C05"  },
+        demoUser: { password: "demo", admin: false, account: "-JT89-_t8Bhn6BjO1C05"  },
     }
 };
 
