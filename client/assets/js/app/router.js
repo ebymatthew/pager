@@ -2,7 +2,10 @@
 */
 App.Router.map(function(){
   this.route('login');
-	this.route('account2');
+	//this.route('account2');
+	this.resource('account2', function(){
+	      this.route('edit');
+	    });
   this.resource('accounts', function(){
 	    this.resource('account', { path:'/:account_id' }, function(){
 	      this.route('edit');
