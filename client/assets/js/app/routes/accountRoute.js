@@ -1,7 +1,8 @@
-/* /routes/accountsRoute.js 
+/* /routes/accountRoute.js 
 */
-App.AccountRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin).extend({
+App.AccountRoute = Ember.Route.extend(AuthorizedRouteMixin).extend({
   model: function(){
-    return this.store.find('account', '-JWXchtSIBW16KTVFqov');
+    var accountId = this.get('session.profile.accountId');
+    return this.store.find('account', accountId);
   }
 });

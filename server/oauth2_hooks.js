@@ -10,8 +10,8 @@ var database2 = {
         pagerApiClient: { secret: "none" }
     },
     users: {
-        demoAdmin: { password: "demo", admin: true, account: "-JT89-_t8Bhn6BjO1C05"  },
-        demoUser: { password: "demo", admin: false, account: "-JT89-_t8Bhn6BjO1C05"  },
+        demoAdmin: { password: "demo", admin: true, accountId: "-JT89-_t8Bhn6BjO1C05"  },
+        demoUser: { password: "demo", admin: false, accountId: "-JT89-_t8Bhn6BjO1C05"  },
     }
 };
 
@@ -26,7 +26,7 @@ exports.grantUserToken = function (allCredentials, req, cb) {
     
     // Generate a new secure JWT, we are sending the profile inside the token
     var tokenGenerator = new FirebaseTokenGenerator(config.JWT_SECRET);
-    var token = tokenGenerator.createToken({username: username, admin: database2.users[username]['admin']});
+    var token = tokenGenerator.createToken({username: username, admin: database2.users[username]['admin'], accountId: database2.users[username]['accountId']});
 
     // Call back with the token so Restify-OAuth2 can pass it on to the client.
     return cb(null, token);
