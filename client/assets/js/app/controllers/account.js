@@ -1,6 +1,6 @@
-/* /controllers/account2.js 
+/* /controllers/account.js 
 */
-App.Account2Controller = Ember.ObjectController.extend({
+App.AccountController = Ember.ObjectController.extend({
   actions: {
     delete: function(){
       // this tells Ember-Data to delete the current account

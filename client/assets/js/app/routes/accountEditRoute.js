@@ -1,11 +1,11 @@
 /* /routes/accountEditRoute.js 
 */
-App.Account2EditRoute = Ember.Route.extend({
+App.AccountEditRoute = Ember.Route.extend({
   model: function(){ 
-    return this.modelFor('account2');
+    return this.modelFor('account');
   },
   deactivate: function() {
-	var model = this.controllerFor('account2.edit').get('model');
+	var model = this.controllerFor('account.edit').get('model');
 	if ( (model.get('isNew') || model.get('isDirty')) && (!model.get('isSaving')) ) {
 	  model.rollback();
 	}

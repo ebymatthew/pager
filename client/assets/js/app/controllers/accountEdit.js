@@ -1,6 +1,6 @@
 /* /controllers/accountEditController.js 
 */
-App.Account2EditController = Ember.ObjectController.extend({
+App.AccountEditController = Ember.ObjectController.extend({
   formTitle: "Edit Account",
   actions: {
     save: function(){
@@ -8,14 +8,14 @@ App.Account2EditController = Ember.ObjectController.extend({
       // this will tell Ember-Data to save/persist the new record
       account.save();
       // then transition to the current account
-      this.transitionToRoute('account2');
+      this.transitionToRoute('account');
     },
     cancel: function(){
       var account = this.get('model');
       if (account.get("isDirty")){
         account.rollback();
 	    }
-      this.transitionToRoute('account2');
+      this.transitionToRoute('account');
     }
   }
 });
