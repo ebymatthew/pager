@@ -1,4 +1,4 @@
-/* /controllers/accountEditController.js 
+/* /controllers/accountEdit.js 
 */
 App.AccountEditController = Ember.ObjectController.extend({
   formTitle: "Edit Account",
