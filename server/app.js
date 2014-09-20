@@ -3,6 +3,7 @@ var restifyOAuth2 = require('restify-oauth2');
 
 var config = require('./config');
 var oauth2_hooks = require("./oauth2_hooks");
+var fb_listeners = require("./fb_listeners");
 
 var server = restify.createServer();
 
