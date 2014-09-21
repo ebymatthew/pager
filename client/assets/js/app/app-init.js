@@ -12,7 +12,7 @@ Ember.Application.initializer({
     Ember.SimpleAuth.Session.reopen({
 		profile: function() {
 		    var token = this.get('access_token');
-		    return token ? jwt_decode(token).d : false;
+		    return token ? jwt_decode(token) : false;
 		  }.property('access_token'),
 	});
 
