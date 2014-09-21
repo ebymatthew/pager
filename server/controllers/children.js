@@ -16,9 +16,10 @@ function post(req, res, next) {
   child.name = req.body.child.name;
   child.phone = req.body.child.phone;
   child.notes = req.body.child.notes;
-  child.save(function (err, child, numberAffected) {
-    res.send({"child": child});
-  });
+  child.saveAsync()
+    .spread(function(child) {
+      res.send({"child": child});
+    });
 }
 
 function put(req, res, next) {   

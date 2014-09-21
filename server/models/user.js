@@ -2,6 +2,7 @@
 */
 
 var mongoose = require('mongoose/');
+var Promise = require('bluebird');
 
 // Create a schema for our data
 var UserSchema = new mongoose.Schema({
@@ -18,3 +19,6 @@ var UserSchema = new mongoose.Schema({
 mongoose.model('User', UserSchema);
 
 exports.User = mongoose.model('User');
+
+Promise.promisifyAll(exports.User);
+Promise.promisifyAll(exports.User.prototype);

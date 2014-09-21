@@ -19,9 +19,10 @@ function post(req, res, next) {
   user.email = req.body.user.email;
   user.admin = req.body.user.admin;
   user.password = passwordHash.generate('demo');
-  user.save(function (err, user, numberAffected) {
-    res.send({"user": user});
-  });
+  user.saveAsync()
+    .spread(function(guardian) {
+      res.send({"user": user});
+    });
 }
 
 function put(req, res, next) {

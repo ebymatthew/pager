@@ -16,9 +16,10 @@ function post(req, res, next) {
   guardian.name = req.body.guardian.name;
   guardian.phone = req.body.guardian.phone;
   guardian.notes = req.body.guardian.notes;
-  guardian.save(function (err, guardian, numberAffected) {
-    res.send({"guardian": guardian});
-  });
+  guardian.saveAsync()
+    .spread(function(guardian) {
+      res.send({"guardian": guardian});
+    });
 }
 
 function put(req, res, next) {
