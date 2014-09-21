@@ -13,7 +13,7 @@ App.ChildrenCreateController = Ember.ObjectController.extend({
     cancel: function(){
       var child = this.get('model');
       if (child.get("isDirty")){
-    	child.rollback();
+    	  child.rollback();
       }
       this.transitionToRoute('children');
     }

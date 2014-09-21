@@ -13,7 +13,7 @@ App.GuardiansCreateController = Ember.ObjectController.extend({
     cancel: function(){
       var guardian = this.get('model');
       if (guardian.get("isDirty")){
-    	guardian.rollback();
+    	  guardian.rollback();
       }
       this.transitionToRoute('guardians');
     }

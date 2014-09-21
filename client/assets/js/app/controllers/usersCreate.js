@@ -14,7 +14,7 @@ App.UsersCreateController = Ember.ObjectController.extend({
     cancel: function(){
       var user = this.get('model');
   	  if (user.get("isDirty")){
-  		user.rollback();
+  		  user.rollback();
   	  }
       this.transitionToRoute('users');
     }
