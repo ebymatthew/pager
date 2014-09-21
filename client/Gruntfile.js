@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         ],
         dest: 'public/assets/css/style.css'
       },
-      libs: {
+      /*libs: {
         src: [
           'bower_components/jquery/jquery.js',
           'bower_components/handlebars/handlebars.js',
@@ -45,10 +45,27 @@ module.exports = function(grunt) {
           'bower_components/jwt-decode/build/jwt-decode.min.js'
         ],
         dest: 'public/assets/js/libs.js'
-      },
+      },*/
       app: {
         src: 'assets/js/app/**/*.js',
         dest: 'public/assets/js/app.js'
+      }
+    },
+    
+    uglify: {
+      libs: {
+        files: {
+          'public/assets/js/libs.js': [
+            'bower_components/jquery/jquery.js',
+            'bower_components/handlebars/handlebars.js',
+            'bower_components/ember/ember.js',
+            'bower_components/ember-data/ember-data.js',
+            'bower_components/moment/moment.js',
+            'bower_components/ember-simple-auth/ember-simple-auth.js',
+            'bower_components/ember-simple-auth/ember-simple-auth-oauth2.js',
+            'bower_components/jwt-decode/build/jwt-decode.min.js'
+          ]
+        }
       }
     },
     
@@ -92,10 +109,11 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('default', ['sass', 'concat', 'emberTemplates', 'copy']);
+  grunt.registerTask('default', ['sass', 'concat', 'uglify', 'emberTemplates', 'copy']);
 };
