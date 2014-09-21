@@ -1,12 +1,14 @@
 var restify = require('restify');
 var restifyOAuth2 = require('restify-oauth2');
+var mongoose = require('mongoose/');
 
 var config = require('./config');
+var controllers = require('./controllers');
 var oauth2_hooks = require("./oauth2_hooks");
-var fb_listeners = require("./fb_listeners");
 
 var server = restify.createServer();
 
+var db = mongoose.connect(config.creds.mongoose_auth);
 
 /************
  * Begin - Middleware needed by restify-oauth2
@@ -61,6 +63,39 @@ server.head('/secret/hello/:name', respond_secret);
 /************
  * End Demo Code - DELETE LATER
  ************/
+ 
+server.get('/api/v1/users', controllers.users.get);
+server.post('/api/v1/users', controllers.users.post);
+server.put('/api/v1/users/:id', controllers.users.put);
+server.del('/api/v1/users/:id', controllers.users.del);
+
+server.get('/api/v1/guardians', controllers.guardians.get);
+server.post('/api/v1/guardians', controllers.guardians.post);
+server.put('/api/v1/guardians/:id', controllers.guardians.put);
+server.del('/api/v1/guardians/:id', controllers.guardians.del);
+
+server.get('/api/v1/children', controllers.children.get);
+server.post('/api/v1/children', controllers.children.post);
+server.put('/api/v1/children/:id', controllers.children.put);
+server.del('/api/v1/children/:id', controllers.children.del);
+
+server.get('/api/v1/:pageCalled', function(req, res) {
+  console.log("catchall - get " + req.params.pageCalled);
+});
+
+server.post('/api/v1/:pageCalled', function(req, res) {
+  console.log("catchall - post " + req.params.pageCalled);
+});
+
+server.put('/api/v1/:pageCalled', function(req, res) {
+  console.log("catchall - put " + req.params.pageCalled);
+});
+
+server.del('/api/v1/:pageCalled', function(req, res) {
+  console.log("catchall - delete " + req.params.pageCalled);
+});
+ 
+ 
  
 server.listen(process.env.PORT, function() {
   console.log('%s listening at %s', server.name, server.url);

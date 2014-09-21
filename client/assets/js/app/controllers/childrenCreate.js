@@ -6,10 +6,9 @@ App.ChildrenCreateController = Ember.ObjectController.extend({
     save: function(){
       // create a record and save it to the store
       var newChild = this.get('model');
-      newChild.save();
-
+      
       // redirects to the child itself
-      this.transitionToRoute('child', newChild);
+      this.transitionToRoute('child', newChild.save());
     },
     cancel: function(){
       var child = this.get('model');

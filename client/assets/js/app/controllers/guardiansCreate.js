@@ -6,10 +6,9 @@ App.GuardiansCreateController = Ember.ObjectController.extend({
     save: function(){
       // create a record and save it to the store
       var newGuardian = this.get('model');
-      newGuardian.save();
 
       // redirects to the guardian itself
-      this.transitionToRoute('guardian', newGuardian);
+      this.transitionToRoute('guardian', newGuardian.save());
     },
     cancel: function(){
       var guardian = this.get('model');
