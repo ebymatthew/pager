@@ -11,16 +11,21 @@ var server = restify.createServer();
 var db = mongoose.connect(config.creds.mongoose_auth);
 
 /************
- * Begin - Middleware needed by restify-oauth2
+ * Begin - Middleware to log all requests - delete for production
  ************/
 server.use(function(req, res, next){
   console.log('request - ' + req.path());
   next();
 });
+/************
+ * End - Middleware to log all requests - delete for production
+ ************/
 
+/************
+ * Begin - Middleware needed by restify-oauth2
+ ************/
 server.use(restify.authorizationParser());
 server.use(restify.bodyParser({ mapParams: false }));
-
 /************
  * End - Middleware needed by restify-oauth2
  ************/
@@ -43,20 +48,7 @@ restifyOAuth2.ropc(server, {
 });
 
 /************
- * Serve routes
- ************/
-
-/************
- * Begin Demo Code - DELETE LATER
- ************/
-function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
-  next();
-}
-server.get('/hello/:name', respond);
-server.head('/hello/:name', respond);
-/************
- * End Demo Code - DELETE LATER
+ * Middleware
  ************/
 
 function reject_unauthenticated(req, res, next) {
@@ -67,11 +59,16 @@ function reject_unauthenticated(req, res, next) {
   next();
 }
 server.use(reject_unauthenticated);
+
+
+/************
+ * Serve routes
+ ************/
  
 server.get('/api/v1/accounts', controllers.accounts.get);
 server.post('/api/v1/accounts', controllers.accounts.post);
 server.put('/api/v1/accounts/:id', controllers.accounts.put);
-server.del('/api/v1/accounts/:id', controllers.accounts.del);
+//server.del('/api/v1/accounts/:id', controllers.accounts.del);
  
 server.get('/api/v1/users', controllers.users.get);
 server.post('/api/v1/users', controllers.users.post);
