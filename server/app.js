@@ -55,20 +55,18 @@ function respond(req, res, next) {
 }
 server.get('/hello/:name', respond);
 server.head('/hello/:name', respond);
-
-function respond_secret(req, res, next) {
-  if (!req.username) {
-    return res.sendUnauthenticated();
-  }
-  
-  res.send('hello ' + req.params.name);
-  next();
-}
-server.get('/secret/hello/:name', respond_secret);
-server.head('/secret/hello/:name', respond_secret);
 /************
  * End Demo Code - DELETE LATER
  ************/
+
+function reject_unauthenticated(req, res, next) {
+  if (!req.username) {
+    return res.sendUnauthenticated();
+  }
+  console.log('authenticated - ' + req.path());
+  next();
+}
+server.use(reject_unauthenticated);
  
 server.get('/api/v1/accounts', controllers.accounts.get);
 server.post('/api/v1/accounts', controllers.accounts.post);
@@ -105,8 +103,6 @@ server.put('/api/v1/:pageCalled', function(req, res) {
 server.del('/api/v1/:pageCalled', function(req, res) {
   console.log("catchall - delete " + req.params.pageCalled);
 });
- 
- 
  
 server.listen(process.env.PORT, function() {
   console.log('%s listening at %s', server.name, server.url);
