@@ -13,8 +13,14 @@ var db = mongoose.connect(config.creds.mongoose_auth);
 /************
  * Begin - Middleware needed by restify-oauth2
  ************/
+server.use(function(req, res, next){
+  console.log('request - ' + req.path());
+  next();
+});
+
 server.use(restify.authorizationParser());
 server.use(restify.bodyParser({ mapParams: false }));
+
 /************
  * End - Middleware needed by restify-oauth2
  ************/
@@ -63,6 +69,11 @@ server.head('/secret/hello/:name', respond_secret);
 /************
  * End Demo Code - DELETE LATER
  ************/
+ 
+server.get('/api/v1/accounts', controllers.accounts.get);
+server.post('/api/v1/accounts', controllers.accounts.post);
+server.put('/api/v1/accounts/:id', controllers.accounts.put);
+server.del('/api/v1/accounts/:id', controllers.accounts.del);
  
 server.get('/api/v1/users', controllers.users.get);
 server.post('/api/v1/users', controllers.users.post);
