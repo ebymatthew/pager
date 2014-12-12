@@ -12,8 +12,16 @@ bower install
 grunt
 ```
 
-Then, start the server:
+Next, start the server:
 ```
 cd ../server
 node app.js
 ```
+
+Then, open in browser and login.
+
+User: demoUser Password: demo
+User: demoAdmin Password: demo
+
+
+
