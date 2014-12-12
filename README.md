@@ -20,8 +20,10 @@ node app.js
 
 Then, open in browser and login.
 
-User: demoUser Password: demo
-User: demoAdmin Password: demo
+|User|Password|
+|:---|:-------|
+|demoUser|demo|
+|demoAdmin|demo|
 
 
 
