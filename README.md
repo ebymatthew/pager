@@ -23,7 +23,9 @@ export PORT=8080
 node app.js
 ```
 
-Then, open in browser and login: 0.0.0.0:8080/index.html
+Then, open in browser and login: 
+
+http://0.0.0.0:8080/index.html
 
 |User|Password|
 |:---|:-------|
